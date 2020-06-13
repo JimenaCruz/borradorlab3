@@ -1,30 +1,24 @@
 <?php
-     $user=array("EMPRESA","EMPRESANACIONAL");
-     $pass=array(123,456);
+	include ('Conexion.php');
 
-     $estado=false; 
+	$con=new Conexion();
 
-   $nombre=$_POST['Nombre'];
-   $password=$_POST['Pass'];
+	$user=$_POST['nombre'];
+	$password=$_POST['password'];
 
-   $tam=count($user); 
+	$query="SELECT * FROM `user` WHERE user='$user' AND password='$password'";
+	$usuario=$con->query($query);
+	$con->close();
+	
 
-   for ($x=0; $x<$tam;$x++)
-   {
-   if ($user[$x]==$nombre && $pass[$x]==$password)
-   {
-       $estado=true;
-   }
-   
-   }
-   if ($estado)
-   {
-       header("location:botones.html");
-   }
-   else 
-   {
-       header("location:index.html");
-   }
+	if($usuario->num_rows==1)
+	{
+		header("location:ventas.php");
+	}
+	else 
+	{
+		header("location:index.html");
+    }
 
 
-  ?>
+?>
