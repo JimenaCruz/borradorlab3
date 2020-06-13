@@ -1,6 +1,10 @@
 <?php
     class Conexion extends mysqli 
-    {
+    {   
+       $servidor="localhost";
+       $basadatos="borrador"; 
+       $usuario="root";
+       $password="";
 	   public function __construct()
        {
 
